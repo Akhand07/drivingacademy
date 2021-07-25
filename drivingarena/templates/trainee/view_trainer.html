@@ -1,0 +1,40 @@
+{% extends 'trainee/traineetemp.html'%}
+{%block title%}View trainer Profile{%endblock%}
+
+{%block style%}
+{%endblock%}
+
+
+{%block body%}
+{% load static %}
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h3>View Trainer Details</h3>
+        </div>
+          {% if view %}
+<table class="table table-dark">
+    <thead>
+    <tr>
+        <th scope="col">NAME</th>
+        <th scope="col">E-MAIL</th>
+        <th scope="col">PHONE</th>
+        <th scope="col">ADDRESS</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <td>{{details.first_name}}</td>
+        <td>{{details.email}}</td>
+        <td>{{view.phone}}</td>
+        <td>{{view.address}}</td>
+    </tr>
+
+    </tbody>
+</table>
+          {% else %}
+          <h3>No trainer assigned yet!</h3>
+      {% endif %}
+      </main>
+{%endblock%}
+

@@ -1,0 +1,101 @@
+{% extends 'schooladmin/admintemp.html'%}
+{%block title%}Add School details{%endblock%}
+
+{%block style%}
+{%endblock%}
+
+
+{%block body%}
+{% load static %}
+
+  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          {% if messages %}
+{% for message in messages%}
+
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    <strong> {{message}}</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+{% endif %}
+
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Add or View School details</h1>
+      </div>
+       {% if request.method == "POST" %}
+          <div class="btn-toolbar mb-2 mb-md-0">
+              <div class="btn-group me-2">
+                  <a href="{{'/viewschooldetails/'}}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+              </div>
+          </div>
+          {% endif %}
+      <form action="/school_details/" method="POST">
+           {% csrf_token %}
+                  <div class="mb-3 row">
+    <label for="SchoolName" class="col-sm-2 col-form-label">School Name</label>
+    <div class="col-sm-10">
+      <input type="text" name="SchoolName" class="form-control" id="SchoolName" required>
+    </div>
+  </div>
+            <div class="mb-3 row">
+    <label for="OwnerName" class="col-sm-2 col-form-label">Owner Name</label>
+    <div class="col-sm-10">
+      <input type="text" name="OwnerName" class="form-control" id="OwnerName" required>
+    </div>
+  </div>
+
+                  <div class="mb-3 row">
+    <label for="email" class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+      <input type="text" name="email" class="form-control" id="email" required>
+    </div>
+  </div>
+
+                          <div class="mb-3 row">
+    <label for="address" class="col-sm-2 col-form-label">Address</label>
+    <div class="col-sm-10">
+      <input type="text" name="address" class="form-control" id="address" required>
+    </div>
+  </div>
+
+                          <div class="mb-3 row">
+    <label for="city" class="col-sm-2 col-form-label">City</label>
+    <div class="col-sm-10">
+      <input type="text" name="city" class="form-control" id="city" required>
+    </div>
+  </div>
+
+                          <div class="mb-3 row">
+    <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+    <div class="col-sm-10">
+      <input type="text" name="phone" class="form-control" id="phone" required>
+    </div>
+  </div>
+
+                      <div class="mb-3 row">
+    <label for="openingdays" class="col-sm-2 col-form-label">Opening Days</label>
+    <div class="col-sm-10">
+      <input type="text" name="openingdays" class="form-control" id="openingdays" required>
+    </div>
+  </div>
+
+                                <div class="mb-3 row">
+    <label for="timings" class="col-sm-2 col-form-label">Timings</label>
+    <div class="col-sm-10">
+      <input type="text" name="timings" class="form-control" id="timings" required>
+    </div>
+  </div>
+
+                          <div class="mb-3 row">
+    <label for="about" class="col-sm-2 col-form-label">About School</label>
+    <div class="col-sm-10">
+       <textarea class="form-control" name="about" id="about" rows="4" required></textarea>
+    </div>
+  </div>
+           <button type="submit" class="btn btn-primary">Add</button>
+      </form>
+  </main>
+{%endblock%}
+

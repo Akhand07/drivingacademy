@@ -1,0 +1,64 @@
+{% extends 'schooladmin/admintemp.html'%}
+{%block title%}Confim Admissson{%endblock%}
+
+{%block style%}
+{%endblock%}
+
+
+{%block body%}
+{% load static %}
+
+  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" >
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" style="color: 'Times New Roman';" >
+          <h1 class="h2" >Confirm admission request</h1>
+      </div>
+<form action="/confirmadmission/" method="post">
+    {% csrf_token %}
+ {%if trainees%}
+<table class="table table-dark">
+  <thead>
+    <tr>
+
+      <th scope="col">Select</th>
+        <th scope="col">NAME</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Address</th>
+       <th scope="col">TransactionNumber</th>
+       <th scope="col">FeesPaid</th>
+
+    </tr>
+  </thead>
+
+    {%for tr in trainees%}
+
+    <tr>
+        <th><input type="checkbox" name="chk" value="{{tr.trainee_id}}">{{tr.trainee_id}}</th>
+        <th>{{tr.first_name}} {{tr.last_name}}</th>
+        <th>{{tr.Phone}}</th>
+        <th>{{tr.Address}}</th>
+        <th>{{tr.Transactionnumber}}</th>
+        <th>{{tr.Fees}}</th>
+    </tr>
+    {%endfor%}
+    <tbody>
+    </tbody>
+</table>
+    <button type="submit" class="btn btn-outline-warning"><b>submit</b></button>
+    {% if messages %}
+{% for message in messages%}
+
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    <strong> {{message}}</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+{% endif %}
+    {%else%}
+    <h3 style="text-align:center; font-family: 'Times New Roman'; color: orangered;" >All the admissions has been confirmed</h3>
+
+</form>
+  </main>
+{%endif%}
+{% endblock %}

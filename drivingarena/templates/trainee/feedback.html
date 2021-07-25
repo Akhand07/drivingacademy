@@ -1,0 +1,51 @@
+{% extends 'trainee/traineetemp.html'%}
+{%block title%}Feedback{%endblock%}
+
+{%block style%}
+{%endblock%}
+
+
+{%block body%}
+{% load static %}
+
+  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                    {% if messages %}
+{% for message in messages%}
+
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    <strong> {{message}}</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">X</span>
+  </button>
+</div>
+{% endfor %}
+{% endif %}
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h3>Feedback</h3>
+        </div>
+ <form action="/feedback/" method="POST" class="needs-validation">
+                        {% csrf_token %}
+                        <div class="mb-3">
+
+                            <label class="form-label"><b>Rating</b></label>
+                            <select class="form-select" name="rating" aria-label="Default select example">
+                                <option selected></option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label for="feedback" class="form-label"><b>Feedback</b></label>
+                            <textarea class="form-control" name="feedback" id="feedback" rows="3" required></textarea>
+                        </div>
+                        <div class="modal-footer text-center">
+                            <button type="submit" class="btn btn-warning"><b>submit</b></button>
+                        </div>
+                    </form>
+  </main>
+{%endblock%}

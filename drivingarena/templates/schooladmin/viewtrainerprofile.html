@@ -1,0 +1,52 @@
+{% extends 'schooladmin/admintemp.html'%}
+{%block title%}View Trainer Profile{%endblock%}
+
+{%block style%}
+{%endblock%}
+
+
+{%block body%}
+{% load static %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+<table class="table table-light">
+    <thead>
+    <tr>
+
+        <th scope="col">NAME</th>
+        <th scope="col">TRAINER ID</th>
+        <th scope="col">ADDRESS</th>
+        <th scope="col">PHONE</th>
+        <th scope="col">CITY</th>
+        <th scope="col">DATE OF JOINING</th>
+        <th scope="col">GENDER</th>
+        <th scope="col">EXPERIENCE</th>
+        <th scope="col">PICTURE</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for td in trainerdetails %}
+    {% for t in trainer_name_details %}
+    <tr>
+        <td>{{t.first_name}}{{t.last_name}}</td>
+        {% endfor %}
+        <td>{{td.trainer_id}}</td>
+        <td>{{td.address}}</td>
+        <td>{{td.phone}}</td>
+        <td>{{td.city}}</td>
+        <td>{{td.dateofjoin}}</td>
+        <td>{{td.gender}}</td>
+        <td>{{td.experience}}</td>
+         {% if file_url %}
+    <p>File uploaded at: <a href="{{ file_url }}">{{ uploaded_file_url }}</a></p>
+
+<img src="{{ file_url }}" style="width:100px;height:100px">
+  {% endif %}
+
+        <td><img src="/media/{{td.photo}}" style="width:100px; height:100px;"></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</main>
+{% endblock %}

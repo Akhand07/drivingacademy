@@ -1,0 +1,35 @@
+{% extends 'trainee/traineetemp.html'%}
+{%block title%}View Ride details {%endblock%}
+
+{%block style%}
+{%endblock%}
+
+
+{%block body%}
+{% load static %}
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h3>View Ride Details</h3>
+          </div>
+<table class="table table-dark">
+    <thead>
+    <tr>
+        <th scope="col">DATE</th>
+        <th scope="col">FROM-TO</th>
+        <th scope="col">DURATION</th>
+        <th scope="col">PERFORMANCE</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for v in viewdata %}
+    <tr>
+        <td>{{v.getdate}}</td>
+        <td>{{v.from_to}}</td>
+        <td>{{v.timeduration}}</td>
+        <td>{{v.traineeperformance}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+      </main>
+{%endblock%}

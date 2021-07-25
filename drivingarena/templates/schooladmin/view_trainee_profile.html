@@ -1,0 +1,43 @@
+{% extends 'schooladmin/admintemp.html'%}
+{%block title%}View Trainer Profile{%endblock%}
+
+{%block style%}
+{%endblock%}
+
+
+{%block body%}
+{% load static %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+<table class="table table-dark">
+    <thead>
+    <tr>
+        <th scope="col">TRAINEE ID</th>
+        <th scope="col">PHONE</th>
+        <th scope="col">ADDRESS</th>
+        <th scope="col">CITY</th>
+        <th scope="col">GENDER</th>
+        <th scope="col">DATE OF ADMISSION</th>
+        <th scope="col">ADMISSION MODE</th>
+        <th scope="col">STATUS</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for trd in traineedetails %}
+    <tr>
+        <td>{{trd.trainee}}</td>
+        <td>{{trd.Phone}}</td>
+        <td>{{trd.Address}}</td>
+        <td>{{trd.City}}</td>
+        <td>{{trd.Gender}}</td>
+        <td>{{trd.DateOfAdmission}}</td>
+        <td>{{trd.Admissionmode}}</td>
+        <td>{{trd.Status}}</td>
+<!--        <td><img src="/media/{{emp.emp_image}}" style="width:100px; height:100px;"></td>-->
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</main>
+
+{% endblock %}

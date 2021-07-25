@@ -1,0 +1,46 @@
+{% extends 'trainer_task/trainertemp.html'%}
+{%block title%}View Trainer wise Trainee{%endblock%}
+
+{%block style%}
+{%endblock%}
+
+
+{%block body%}
+{% load static %}
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+<h3>Your Allotted Trainees</h3>
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">City</th>
+      <th scope="col">Address</th>
+    </tr>
+  </thead>
+    <tbody>
+    {%for tr in trainee%}
+        {%for ur in user_trainee%}
+    <tr>
+        <th>
+{{ur.first_name}}
+{{ur.last_name}}
+    </th>
+        <th>
+{{ur.email}}
+    </th>
+    <th>{{tr.Phone}}</th>
+    <th>{{tr.City}}</th>
+    <th>{{tr.Address}}</th>
+    </tr>
+{%endfor%}
+{%endfor%}
+</tbody>
+</table>
+</main>
+{%endblock%}
+
+
+

@@ -1,0 +1,38 @@
+{% extends 'trainee/traineetemp.html'%}
+{%block title%}View Your Profile{%endblock%}
+
+{%block style%}
+{%endblock%}
+
+
+{%block body%}
+{% load static %}
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <table class="table table-dark">
+    <thead>
+    <tr>
+        <th scope="col">TRAINEE ID</th>
+        <th scope="col">NAME</th>
+        <th scope="col">ADDRESS</th>
+        <th scope="col">PHONE</th>
+        <th scope="col">CITY</th>
+        <th scope="col">GENDER</th>
+        <th scope="col">DATE OF ADMISSION</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{data.trainee_id}}</td>
+        <td>{{data.first_name}} {{data.last_name}}</td>
+        <td>{{data.Address}}</td>
+        <td>{{data.Phone}}</td>
+        <td>{{data.City}}</td>
+        <td>{{data.Gender}}</td>
+        <td>{{data.DateOfAdmission}}</td>
+    </tr>
+    </tbody>
+</table>
+
+      </main>
+{%endblock%}
+

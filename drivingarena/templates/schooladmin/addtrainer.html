@@ -1,0 +1,141 @@
+{% extends 'schooladmin/admintemp.html'%}
+{%block title%}Add Trainer details{%endblock%}
+
+{% block script %}
+$(document).ready(function(){
+<!--    $.noConflict();-->
+
+    $("#username").blur(function ()
+    {
+<!--        alert(this.value)-->
+
+     $.ajax({
+        //type:"GET",
+        data: $(this).serialize(), // get the form data
+        url: "{% url 'validate_username' %}",
+        //dataType: 'json',
+        success: function (response) {
+
+          if (response.is_taken==true) {
+               $('#userNameExistence').remove()
+            //alert("A user with this username already exists.");
+            $('#username').after('<div class="abc" id="userNameExistence">This username is not available!</div>')
+          }
+          else{
+            $('#userNameExistence').remove();
+          }
+
+        },
+        //on any type of error
+        error: function (response) {
+                        // alert the error if any error occured
+                        console.log(response.responseJSON.errors)
+                    }
+    });
+
+    return false;
+    });
+    })
+
+{% endblock %}
+
+{% block style %}
+    .abc{
+    color: green;
+    }
+{%endblock%}
+
+{%block body%}
+{% load static %}
+
+  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+              {% if messages %}
+{% for mes in messages%}
+
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    <strong> {{mes}}</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">X</span>
+  </button>
+</div>
+{% endfor %}
+{% endif %}
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Add Trainer details</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+              <div class="btn-group me-2">
+                  <a href="{{'/viewtrainerprofile/'}}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+              </div>
+          </div>
+      </div>
+      <form action="/addtrainer/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container">
+        <div class="form-group">
+    <label for="username">TrainerUserName</label>
+    <input type="text" class="form-control" id="username" name="username" placeholder="Enter userName" required>
+  </div>
+
+           <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+  </div>
+  <div class="form-group">
+    <label for="fname">TrainerFirstName</label>
+    <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter first name" required>
+  </div>
+     <div class="form-group">
+    <label for="lname">LastName</label>
+    <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter Last Name" required>
+  </div>
+        <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" name="email"  placeholder="Enter email" required>
+  </div>
+        <div class="form-group">
+    <label for="experience">Experience</label>
+    <input type="text" class="form-control" id="experience" name="experience" placeholder="Enter Experience" required>
+  </div>
+           <div class="form-group">
+    <label for="phone">Phone</label>
+    <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter phoneNumber" required>
+  </div>
+<!--        <div class="form-group">-->
+<!--    <label for="date">Date</label>-->
+<!--    <input type="date" class="form-control" id="date" name="date" required>-->
+<!--  </div>-->
+        <div class="form-group">
+    <label for="city">City</label>
+    <input type="text" class="form-control" id="city" name="city" required>
+  </div>
+        <div class="form-group">
+    <label>Gender</label>
+   <div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="Male">
+  <label class="form-check-label" for="inlineRadio1">Male</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Female">
+  <label class="form-check-label" for="inlineRadio2">Female</label>
+</div>
+  </div>
+          <div class="form-group">
+    <label for="Address">Address</label>
+              <textarea class="form-control" id="address" name="address" placeholder="Enter Address" required></textarea>
+  </div>
+  <div class="form-group row ml-5">
+    <label for="fileupload" class="col-sm-2 col-form-label">Upload</label>
+    <div class="col-sm-8">
+      <input type="file" class="form-control" id="fileupload" name="fileupload" placeholder="fileupload" required>
+      <div class="invalid-feedback">
+        Please provide your image
+      </div>
+    </div>
+  </div>
+
+        <button type="submit" class="btn btn-primary">submit</button>
+    </div>
+    </form>
+  </main>
+{%endblock%}
+

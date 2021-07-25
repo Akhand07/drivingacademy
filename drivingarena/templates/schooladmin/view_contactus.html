@@ -1,0 +1,46 @@
+{% extends 'schooladmin/admintemp.html'%}
+{%block title%} View Contact Us{%endblock%}
+
+{%block style%}
+{%endblock%}
+
+
+{%block body%}
+{% load static %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h3 class="h2"><b>View Contact queries</b></h3>
+    </div>
+<table class="table table-dark">
+    <thead>
+    <tr>
+        <th scope="col">NAME</th>
+        <th scope="col">E-MAIL</th>
+        <th scope="col">DATE</th>
+        <th scope="col">QUERY</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for cd in contactdetails %}
+    <tr>
+        <td>{{cd.name}}</td>
+        <td>{{cd.email}}</td>
+        <td>{{cd.date}}</td>
+        <td>{{cd.yourQuery}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</main>
+
+<!--<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" >-->
+<!--    <h3 style="font-family: 'Times New Roman';"><b>View Contact Us </b></h3>-->
+<!--<form method="post" style="margin-left:28%; margin-top: 2%;">-->
+<!--    {% csrf_token %}-->
+<!--    <table>-->
+<!--    {{form}}-->
+<!--        </table>-->
+<!--  <button type="submit" class="btn btn-warning" style="margin-left: 22%; font-family: 'Times New Roman';"><b>Submit</b></button>-->
+<!--  </form>-->
+<!--</main>-->
+{% endblock %}

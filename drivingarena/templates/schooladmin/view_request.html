@@ -1,0 +1,56 @@
+{% extends 'schooladmin/admintemp.html'%}
+{%block title%}Add Trainee details{%endblock%}
+
+{%block style%}
+{%endblock%}
+
+
+{%block body%}
+{% load static %}
+
+  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+              {% if messages %}
+{% for message in messages%}
+
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    <strong> {{message}}</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">X</span>
+  </button>
+</div>
+{% endfor %}
+{% endif %}
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">VIEW TRAINEE REQUESTS</h1>
+      </div>
+      <table class="table table-light">
+    <thead>
+    <tr>
+        <th scope="col">NAME</th>
+        <th scope="col">GENDER</th>
+        <th scope="col">PHONE</th>
+        <th scope="col">CITY</th>
+        <th scope="col">DATE OF JOINING</th>
+        <th scope="col">ADDRESS</th>
+        <th scope="col">ADMISSION MODE</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for vr in view_trainee_request %}
+    <tr>
+        <td>{{vr.firstname}} {{vr.lastname}}</td>
+        <td>{{vr.gender}}</td>
+        <td>{{vr.phone}}</td>
+        <td>{{vr.city}}</td>
+        <td>{{vr.dateofjoin}}</td>
+        <td>{{vr.address}}</td>
+        <td>{{vr.admissionmode}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+  </main>
+{%endblock%}
+

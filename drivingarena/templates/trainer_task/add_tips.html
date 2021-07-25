@@ -1,0 +1,52 @@
+{% extends 'trainer_task/trainertemp.html'%}
+{%block title%}Add School details{%endblock%}
+
+{%block style%}
+{%endblock%}
+
+
+{%block body%}
+{% load static %}
+
+  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Add Tips </h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+              <div class="btn-group me-2">
+                  <a href="{{'/view_tips/'}}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+              </div>
+          </div>
+      </div>
+      <form action="/add_tips/" method="POST" class="needs-validation" novalidate>
+           {% csrf_token %}
+    <div class="mb-3 row">
+    <label for="tips_id" class="col-sm-2 col-form-label">tipsid</label>
+    <div class="col-sm-10">
+      <input type="text" name="tips_id" class="form-control" id="tips_id" required>
+    </div>
+  </div>
+     <div class="mb-3 row">
+    <label for="tipstext" class="col-sm-2 col-form-label">tipstext</label>
+    <div class="col-sm-10">
+      <input type="text" name="tipstext" class="form-control" id="tipstext" required>
+    </div>
+  </div>
+
+                      <div class="mb-3 row">
+    <label for="username" class="col-sm-2 col-form-label">username</label>
+    <div class="col-sm-10">
+      <input type="text" name="username" class="form-control" id="username" required>
+    </div>
+  </div>
+          <div class="mb-3 row">
+    <label for="postdate" class="col-sm-2 col-form-label">postdate</label>
+    <div class="col-sm-10">
+      <input type="date" name="postdate" class="form-control" id="postdate" required>
+    </div>
+  </div>
+
+           <button type="submit" class="btn btn-primary">ADD </button>
+      </form>
+  </main>
+{%endblock%}
+

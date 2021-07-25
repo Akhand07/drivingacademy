@@ -1,0 +1,35 @@
+{% extends 'trainer_task/trainertemp.html'%}
+{%block title%}View Tips{%endblock%}
+
+{%block style%}
+{%endblock%}
+
+
+{%block body%}
+{% load static %}
+
+       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+<table class="table table-dark">
+    <thead>
+    <tr>
+        <th scope="col">TIPS ID</th>
+        <th scope="col">TIPS TEXT</th>
+        <th scope="col">USERNAME</th>
+        <th scope="col">POST DATE</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for td in viewtips %}
+    <tr>
+        <td>{{td.tips_id}}</td>
+        <td>{{td.tipstext}}</td>
+        <td>{{td.username}}</td>
+        <td>{{td.postdate}}</td>
+                <!--<td><img src="/media/{{emp.emp_image}}" style="width:100px; height:100px;"></td>-->
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+  </main>
+{%endblock%}

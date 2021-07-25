@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>{% block title %}
+         School Admin Home Page Dashboard
+    {% endblock %}</title>
+
+
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/0e3ac2e4e1.js" crossorigin="anonymous"></script>
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <!-- main css -->
+    <link rel="stylesheet" href="{%static 'drivingarena/css/dashboard.css' %}">
+     <style>
+     {% block style %}
+
+     {%endblock%}
+    </style>
+    <script>
+    {% block script %}
+
+    {% endblock %}
+    </script>
+</head>
+
+<body>
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{{'/admintemp '}}" style="font-family:'Times New Roman';">Swift Driving Academy</a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="{{'/logout'}}" style="font-family:'Times New Roman';">Log Out</a>
+            </li>
+        </ul>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                         <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/view_school_admin_profile/" style="color: white;">
+                                <i class="fas fa-home"></i>
+                                <b  style="font-family:'Times New Roman';"> View Your Profile </b>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/school_details/" style="color: white;">
+                                <i class="fas fa-home"></i>
+                                <b style="font-family:'Times New Roman';">Add School Details </b>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/addtrainer/" style="color: white;">
+                                <i class="fas fa-file-alt"></i>
+                                <b style="font-family:'Times New Roman';">Add Trainer</b>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/addtrainee/" style="color: white;">
+                                <i class="fas fa-users"></i>
+                                <b style="font-family:'Times New Roman';">Add Trainee</b>
+                            </a>
+                       </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/view_feedback/" style="color: white;">
+                                <i class="fas fa-file-alt"></i>
+                                <b style="font-family:'Times New Roman';">View Feedback</b>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/view_contactus/" style="color: white;">
+                                <i class="fas fa-file-alt"></i>
+                                <b style="font-family:'Times New Roman';">View Contact Us</b>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+       {%block body%}
+       {% endblock %}
+    </div>
+<!--    <script src="{%static 'housekeeping/js/validation.js' %}"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

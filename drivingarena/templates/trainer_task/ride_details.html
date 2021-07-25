@@ -1,0 +1,56 @@
+{% extends 'trainer_task/trainertemp.html'%}
+{%block title%}Add Ride details{%endblock%}
+
+{%block style%}
+{%endblock%}
+
+
+{%block body%}
+{% load static %}
+
+  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Add Ride details</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+              <div class="btn-group me-2">
+                  <a href="{{'/view_ride_details'}}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+              </div>
+          </div>
+
+      </div>
+      <form action="/ride_details/" method="POST" class="needs-validation" novalidate style="background-black">
+           {% csrf_token %}
+             <select name="cmbtrainee">
+        <option>Choose Trainee</option>
+        {%for t in trainee%}
+        <option value="{{t.trainee_id}}">{{t.first_name}}</option>
+        {%endfor%}
+    </select>
+
+<div class="mb-3 row">
+    <label for="from_to" class="col-sm-2 col-form-label">From-To</label>
+    <div class="col-sm-10">
+      <input type="text" name="from_to" class="form-control" id="from_to" required>
+    </div>
+  </div>
+
+   <div class="mb-3 row">
+    <label for="time" class="col-sm-2 col-form-label">Time</label>
+    <div class="col-sm-10">
+      <input type="text" name="time" class="form-control" id="time" required>
+    </div>
+  </div>
+
+                      <div class="mb-3 row">
+    <label for="traineeperformance" class="col-sm-2 col-form-label">Trainee Performance-</label>
+    <div class="col-sm-10">
+      <input type="text" name="traineeperformance" class="form-control" id="traineeperformance" required>
+    </div>
+  </div>
+
+           <button type="submit" class="btn btn-primary">ADD DETAILS</button>
+      </form>
+  </main>
+{%endblock%}
+

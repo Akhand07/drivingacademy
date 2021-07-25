@@ -1,0 +1,159 @@
+{% extends 'schooladmin/admintemp.html'%}
+{%block title%}Add Trainee details{%endblock%}
+
+{% block script %}
+$(document).ready(function(){
+<!--    $.noConflict();-->
+
+    $("#username").blur(function ()
+    {
+<!--        alert(this.value)-->
+
+     $.ajax({
+        //type:"GET",
+        data: $(this).serialize(), // get the form data
+        url: "{% url 'validate_username' %}",
+        //dataType: 'json',
+        success: function (response) {
+
+          if (response.is_taken==true) {
+               $('#userNameExistence').remove()
+            //alert("A user with this username already exists.");
+            $('#username').after('<div class="abc" id="userNameExistence"> username is not available!</div>')
+          }
+          else{
+            $('#userNameExistence').remove();
+          }
+
+        },
+        //on any type of error
+        error: function (response) {
+                        // alert the error if any error occured
+                        console.log(response.responseJSON.errors)
+                    }
+    });
+
+    return false;
+    });
+    })
+
+{% endblock %}
+
+{% block style %}
+    .abc{
+    color: red;
+    }
+{%endblock%}
+
+
+{%block body%}
+{% load static %}
+
+  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+              {% if messages %}
+{% for message in messages%}
+
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    <strong> {{message}}</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">X</span>
+  </button>
+</div>
+{% endfor %}
+{% endif %}
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Add Trainee details</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+              <div class="btn-group me-2">
+                  <a href="{{'/view_trainee_profile'}}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+<!--                  <a href="{{'/view_request'}}"><button type="button" class="btn btn-sm btn-outline-secondary">View Pre-Request</button></a>-->
+                  <a href="{{'/asigntrainer/'}}"><button type="button" class="btn btn-sm btn-outline-secondary">Assign Trainer</button></a>
+                  <a href="{{'/confirmadmission/'}}"><button type="button" class="btn btn-sm btn-outline-secondary">Confirm Admission</button></a>
+                  <a href="{{'/deletetrainees/'}}"><button type="button" class="btn btn-sm btn-outline-secondary">Delete Trainee</button></a>
+
+              </div>
+          </div>
+      </div>
+      <form action="/addtrainee/" method="post">
+    {% csrf_token %}
+    <div class="container">
+
+     <div class="form-group">
+    <label for="name">TraineeUserName</label>
+    <input type="text" class="form-control" id="username" name="username" placeholder="Enter userName" required>
+  </div>
+
+           <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+  </div>
+  <div class="form-group">
+    <label for="FirstName">TraineeFirstName</label>
+    <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter first name" required>
+  </div>
+        <div class="form-group">
+    <label for="LastName">LastName</label>
+    <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter Last Name" required>
+  </div>
+    <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" name="email"  placeholder="Enter email" required>
+  </div>
+
+        <div class="form-group">
+    <label for="city">City</label>
+    <input type="text" class="form-control" id="city" name="city" placeholder="Enter cityname" required>
+  </div>
+           <div class="form-group">
+    <label for="phone">Phone</label>
+    <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter phoneNumber" required>
+  </div>
+          <div class="form-group">
+    <label for="Address">Address</label>
+              <textarea class="form-control" id="address" name="address" placeholder="Enter Address" required></textarea>
+  </div>
+  <div class="mb-3 row">
+      <label class="col-sm-2 col-form-label">Gender</label>
+      <div class="col-sm-10">
+        <div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+  <label class="form-check-label" for="male">Male</label>
+</div>
+          <div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+  <label class="form-check-label" for="female">FeMale</label>
+</div>
+  </div>
+  </div>
+        <div class="mb-3 row">
+      <label class="col-sm-2 col-form-label">Admission Mode</label>
+      <div class="col-sm-10">
+          <div class="form-check form-check-inline">
+
+  <input class="form-check-input" type="radio" name="mode" id="online" value="online">
+  <label class="form-check-label" for="online">Online</label>
+</div>
+
+                 <div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="mode" id="offline" value="offline">
+  <label class="form-check-label" for="offline">Offline</label>
+</div>
+      </div>
+        </div>
+
+      <div class="form-group">
+    <label for="fees">Fees</label>
+    <input type="text" class="form-control" id="fees" name="fees" placeholder="Enter Fees" required>
+  </div>
+
+
+          <div class="form-group">
+    <label for="transaction">TransactionDetails</label>
+    <input type="text" class="form-control" id="transaction" name="tdetails" placeholder="Enter Details" required>
+  </div>
+    <button type="submit" class="btn btn-primary">submit</button>
+    </div>
+      </form>
+  </main>
+{%endblock%}
+

@@ -1,0 +1,43 @@
+{% extends 'schooladmin/admintemp.html'%}
+{%block title%}Add School details{%endblock%}
+
+{%block style%}
+{%endblock%}
+
+
+{%block body%}
+{% load static %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+<table class="table table-light">
+    <thead>
+    <tr>
+        <th scope="col">SCHOOL NAME</th>
+        <th scope="col">OWNER NAME</th>
+        <th scope="col">CITY</th>
+        <th scope="col">ADDRESS</th>
+        <th scope="col">PHONE</th>
+        <th scope="col">EMAIL</th>
+        <th scope="col">ABOUT</th>
+        <th scope="col">OPENING DAYS</th>
+        <th scope="col">TIME</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for sd in schooldetails %}
+    <tr>
+        <td>{{sd.school_name}}</td>
+        <td>{{sd.owner_name}}</td>
+        <td>{{sd.city}}</td>
+        <td>{{sd.address}}</td>
+        <td>{{sd.phone}}</td>
+        <td>{{sd.email}}</td>
+        <td>{{sd.about}}</td>
+        <td>{{sd.opening_days}}</td>
+        <td>{{sd.time}}</td>
+<!--        <td><img src="/media/{{emp.emp_image}}" style="width:100px; height:100px;"></td>-->
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</main>
+{% endblock %}

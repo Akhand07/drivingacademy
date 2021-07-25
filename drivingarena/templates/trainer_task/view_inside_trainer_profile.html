@@ -1,0 +1,44 @@
+{% extends 'trainer_task/trainertemp.html'%}
+{%block title%}Add Ride details{%endblock%}
+
+{%block style%}
+{%endblock%}
+
+
+{%block body%}
+{% load static %}
+
+     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+<table class="table table-dark">
+    <thead>
+    <tr>
+        <th scope="col">TRAINER ID</th>
+        <th scope="col">ADDRESS</th>
+        <th scope="col">PHONE</th>
+        <th scope="col">CITY</th>
+        <th scope="col">GENDER</th>
+        <th scope="col">EXPERIENCE</th>
+        <th scope="col">PICTURE</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{data.trainer_id_id}}</td>
+        <td>{{data.address}}</td>
+        <td>{{data.phone}}</td>
+        <td>{{data.city}}</td>
+        <td>{{data.gender}}</td>
+        <td>{{data.experience}}</td>
+         {% if file_url %}
+    <p>File uploaded at: <a href="{{ file_url }}">{{ uploaded_file_url }}</a></p>
+
+<img src="{{ file_url }}" style="width:100px;height:100px">
+  {% endif %}
+
+        <td><img src="/media/{{data.photo}}" style="width:100px; height:100px;"></td>
+    </tr>
+    </tbody>
+</table>
+</main>
+{%endblock%}

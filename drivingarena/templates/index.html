@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Swift Driving Academy</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+<!-- Aos -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+  <link href="{% static 'drivingarena/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'drivingarena/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+  <link href="{% static 'drivingarena/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'drivingarena/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'drivingarena/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'drivingarena/vendor/line-awesome/css/line-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'drivingarena/vendor/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static 'drivingarena/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+<!--  <link href="{% static 'drivingarena/vendor/aos/aos.css' %}" rel="stylesheet">-->
+  <link href="{% static 'drivingarena/css/style.css' %}" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+<!--    $.noConflict();-->
+
+    $("#username").blur(function ()
+    {
+<!--        alert(this.value)-->
+
+     $.ajax({
+        //type:"GET",
+        data: $(this).serialize(), // get the form data
+        url: "{% url 'validate_username' %}",
+        //dataType: 'json',
+        success: function (response) {
+
+          if (response.is_taken==true) {
+               $('#userNameExistence').remove()
+            //alert("A user with this username already exists.");
+            $('#username').after('<div class="abc" id="userNameExistence"> username is already taken, try another!</div>')
+          }
+          else{
+            $('#userNameExistence').remove();
+          }
+
+        },
+        //on any type of error
+        error: function (response) {
+                        // alert the error if any error occured
+                        console.log(response.responseJSON.errors)
+                    }
+    });
+
+    return false;
+    });
+    })
+
+</script>
+  <style>
+    .abc{
+    color:orangered;
+    }
+  </style>
+</head>
+<body>
+  <header id="header" class="fixed-top d-flex align-items-center header-transparent ">
+    <div class="container d-flex align-items-center">
+      <div class="logo mr-auto">
+        <h1 class="animate__animated animate__fadeInDown"><a href="/">Swift Driving Academy</a></h1>
+
+      </div>
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li><a href="#header">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+<!--            <li><a href="#services">Course Details</a></li>-->
+          <li><a href="#modal" data-bs-toggle="modal" data-bs-target="#modal">Contact Us</a></li>
+          <li><a href="#signupmodal" data-bs-toggle="modal" data-bs-target="#signupmodal">Online Admission</a></li>
+        <li><a href="#loginmodal" data-bs-toggle="modal" data-bs-target="#loginmodal">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+  <section id="hero" class="d-flex flex-column justify-content-end align-items-center" style="z-index:1;">
+    <div id="heroCarousel" class="container carousel carousel-fade" data-ride="carousel">
+      <div class="carousel-item active">
+        <div class="carousel-container">
+          <h2 class="animate__animated animate__fadeInDown">Welcome to Swift Driving Academy</h2>
+          <p class="animate__animated fanimate__adeInUp" style="color: white;">Welcome User to our official website, here  you can check our details and also you can contact us, we can serve you our best. Swift Driving Academy provides you Online Admission for learning.  .</p>
+          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Click here to know more</a>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="carousel-container">
+          <h2 class="animate__animated animate__fadeInDown">Welcome to Swift Driving Academy</h2>
+          <p class="animate__animated animate__fadeInUp" style="color: white;">For your better skills we provide you our best resources</p>
+          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read more for full details</a>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="carousel-container">
+          <h2 class="animate__animated animate__fadeInDown">Welcome to Swift Driving Academy</h2>
+          <p class="animate__animated animate__fadeInUp" style="color: white;">You can check our website for your necessary knowledge purpose, For getting connected with us Please create an Account.</p>
+          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Scroll Down!</a>
+        </div>
+      </div>
+
+      <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon bx bx-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon bx bx-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
+      <defs>
+        <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
+        </path>
+      </defs>
+      <g class="wave1">
+        <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255, .1)">
+        </use>
+      </g>
+      <g class="wave2">
+        <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)">
+        </use>
+      </g>
+      <g class="wave3">
+        <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
+        </use>
+      </g>
+    </svg>
+  </section>
+
+  <main id="main">
+    <section id="about" class="about">
+      <div class="container">
+
+        <div class="section-title" data-aos="zoom-out">
+          <h2  style="font-family: 'Times New Roman';">About The Academy</h2>
+          <p style="font-family: 'Times New Roman';">Who we are?</p>
+        </div>
+
+        <div class="row content" data-aos="fade-up">
+          <div class="col-lg-6">
+            <p>
+              It is our official website of Swift Driving Academy.
+            </p>
+            <ul>
+              <li><i class="ri-check-double-line"></i>  We provide you the best Knowledge.</li>
+              <li><i class="ri-check-double-line"></i> A government certified Academy.</li>
+              <li><i class="ri-check-double-line"></i>Teaching you with our best Trainers having much experience.</li>
+            </ul>
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0">
+            <p>
+              This is our responsibility that we guide you and teach you about ur Driving course.
+            </p>
+            <a href="#" class="btn-learn-more">Find More details</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8" style="margin-top: 5%; margin-left:25px; margin-right:25px;">
+        <div class="section-title" data-aos="zoom-out">
+          <h2 style="font-family: 'Times New Roman';">Information about Academy</h2>
+          <p style="font-family: 'Times New Roman';">Academy details</p>
+        </div>
+              {% for sd in schooldetails %}
+              <ul>
+                <li><i class="ri-check-double-line" style="color: orangered;"></i> The name of our Academy is <b style="color: orangered;">{{sd.school_name}}</b></li>
+                <li><i class="ri-check-double-line" style="color: orangered;"></i> <b style="color: orangered;">{{sd.owner_name}}</b> is the owner of this Academy.</li>
+                <li><i class="ri-check-double-line" style="color: orangered;"></i> The academy is situated in <b style="color: orangered;">Aliganj,{{sd.city}}</b></li>
+              <li><i class="ri-check-double-line" style="color: orangered;"></i>  {{sd.phone}}  is the academy office contact number, if have any query then contact us.</li>
+                <li><i class="ri-check-double-line" style="color: orangered;"></i> <b style="color: orangered;">{{sd.email}}</b> is the email of our Swift Driving Academy , you can check it.</li>
+                <li><i class="ri-check-double-line" style="color: orangered;"></i> Description about our academy--<b>{{sd.about}}</b></li>
+              <li><i class="ri-check-double-line" style="color: orangered;"></i> The schedule of Academy is {{sd.opening_days}} and 2 days off.</li>
+              <li><i class="ri-check-double-line" style="color: orangered;"></i> {{sd.time}} is the timing of academy, in between you will be taught.</li>
+              </ul>
+              {% endfor %}
+        <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <b style="color: orangered;">Transaction Details</b>
+        </button>
+
+      </div>
+
+
+      <div class="col-lg-8" style="margin-top: 5%; margin-left:25px; margin-right:25px;">
+        <div class="section-title" data-aos="zoom-out">
+          <h2 style="font-family: 'Times New Roman';">Important Tips given by Trainers</h2>
+          <p style="font-family: 'Times New Roman';">Important Tips</p>
+        </div>
+        <marquee>
+            {% for td in viewtips %}
+              <ul>
+                <li><i class="ri-check-double-line" style="color: orangered;"></i><b style="color: orangered;">{{td.tipstext}}</b></li>
+                <li><i class="ri-check-double-line" style="color: orangered;"></i><b style="color: orangered;">{{td.username}}</b></li>
+              <li><i class="ri-check-double-line" style="color: orangered;"></i><b style="color: black;">{{td.postdate}}</b></li>
+              </ul>
+            {% endfor %}
+        </marquee>
+      </div>
+
+      <div class="col-lg-8" style="margin-top: 5%; margin-left:25px; margin-right:25px;">
+        <div class="section-title" data-aos="zoom-out">
+          <h2 style="font-family: 'Times New Roman';">Feedbck given by Trainees</h2>
+          <p>WHat they think</p>
+        </div>
+        <marquee>
+            {% for f in feedbackdetails %}
+              <ul>
+                <li><i class="ri-check-double-line" style="color: orangered;"></i><b style="color: orangered;">{{f.username}}</b></li>
+                <li><i class="ri-check-double-line" style="color: orangered;"></i><b style="color: orangered;">{{f.rating}}</b></li>
+              <li><i class="ri-check-double-line" style="color: orangered;"></i><b style="color: black;">{{f.feedback_text}}</b></li>
+              <li><i class="ri-check-double-line" style="color: orangered;"></i><b style="color: black;">{{f.date}}</b></li>
+              </ul>
+            {% endfor %}
+        </marquee>
+      </div>
+    </section>
+
+    <!--About Us Section Closed-->
+
+    <section id="services" class="services">
+      <div class="container">
+
+        <div class="section-title" data-aos="zoom-out">
+          <h2>Services</h2>
+          <p  style="font-family: 'Times New Roman';">What do we offer?.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="icon-box" data-aos="zoom-in-left">
+              <div class="icon"><i class="las la-basketball-ball" style="color: #ff689b;"></i></div>
+                <h4 class="title"><a href="">Safe and Secured</a></h4>
+              <p class="description">You don't need to be worry about your details shared with us, It will be safe and secured.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mt-5 mt-md-0">
+            <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="100">
+              <div class="icon"><i class="las la-book" style="color: #e9bf06;"></i></div>
+              <h4 class="title"><a href="">Online Admission</a></h4>
+              <p class="description">Unless you don't take admission to our website you can easily create and account to just get connected with us.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-5 mt-lg-0 ">
+            <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="200">
+              <div class="icon"><i class="las la-file-alt" style="color: #3fcdc7;"></i></div>
+                <h4 class="title"><a href="">Authorized Academy</a></h4>
+              <p class="description">Swift Driving Academy is a government authorized academy, we are permitted to help you for teaching you better driving skills.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mt-5" style="margin-left: 15%;">
+            <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="300">
+            <div class="icon"><i class="las la-tachometer-alt" style="color:#41cf2e;"></i></div>
+                <h4 class="title"><a href="">Online/Offline payment-method</a></h4>
+              <p class="description">You are allowed to pay your fees online or offline.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-5" style="margin-right: 12%;">
+            <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="400">
+              <div class="icon"><i class="las la-globe-americas" style="color: #d6ff22;"></i></div>
+              <h4 class="title"><a href="">Certification</a></h4>
+              <p class="description">After completion of the course you will be provided a Certificate.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+          <section id="services" class="services">
+      <div class="container">
+        <div class="section-title" data-aos="zoom-in">
+          <h2 style="font-family: 'Times New Roman';">Course details</h2>
+          <p  style="font-family: 'Times New Roman';">What do we preffer?.</p>
+        </div>
+          <p >Our meticulously designed courses help transform beginners into skilled and confident drivers. Choose your desired course from a range of driving training courses and master the skill of driving at Swift Driving School</p>
+           <br>
+          <p >If you’ve never been behind the steering wheel, this course is for you. At the end of 31 days, you’ll know the basic traffic rules and have a hands-on driving experience through simulators and on-road driving. What’s more, you’ll have the confidence of taking the RTO driving exam to obtain a permanent driving license</p>
+          <br>
+          <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="icon-box" data-aos="zoom-in-left">
+              <div class="icon"><i class="las la-basketball-ball" style="color: #ff689b;"></i></div>
+                <h4 class="title"><a href="">15 Practical Sessions</a></h4>
+                <p class="description" >Be regular on the practical class</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mt-5 mt-md-0">
+            <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="100">
+              <div class="icon"><i class="las la-book" style="color: #e9bf06;"></i></div>
+              <h4 class="title"><a href="">5 Simulator Sessions</a></h4>
+                <p class="description" >kindly attend the  simulator sessions</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-5 mt-lg-0 ">
+            <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="200">
+              <div class="icon"><i class="las la-file-alt" style="color: #3fcdc7;"></i></div>
+                <h4 class="title"><a href="">4 Theory Sessions</a></h4>
+                <p class="description" >Attend the theory sessions</p>
+            </div>
+          </div>
+          </div>
+      </div>
+    </section>
+
+
+    <section id="faq" class="faq">
+      <div class="container">
+        <div class="section-title" data-aos="zoom-out">
+          <h2  style="font-family: 'Times New Roman';">F.A.Q</h2>
+          <p  style="font-family: 'Times New Roman';">Frequently Asked Questions</p>
+        </div>
+
+        <ul class="faq-list">
+
+          <li data-aos="fade-up" data-aos-delay="100">
+            <a data-toggle="collapse" class="" href="#faq1">After taking admission who will be my Trainer?<i class="icofont-simple-up"></i></a>
+            <div id="faq1" class="collapse show" data-parent=".faq-list">
+              <p>
+                School Admin will assign the available trainer for you.
+              </p>
+            </div>
+          </li>
+
+          <li data-aos="fade-up" data-aos-delay="200">
+            <a data-toggle="collapse" href="#faq2" class="collapsed">How long it will take to start my driving after registering here? <i class="icofont-simple-up"></i></a>
+            <div id="faq2" class="collapse" data-parent=".faq-list">
+              <p>
+                Nosooner your admission will confirmed by the school administator than you will be provided a username and password and then you can get started.
+              </p>
+            </div>
+          </li>
+
+          <li data-aos="fade-up" data-aos-delay="300">
+            <a data-toggle="collapse" href="#faq3" class="collapsed">I want to become Trainer how would I contact? <i class="icofont-simple-up"></i></a>
+            <div id="faq3" class="collapse" data-parent=".faq-list">
+              <p>
+                You should contact to school admin, details are being mentioned in Contact Us section.
+              </p>
+            </div>
+          </li>
+
+          <li data-aos="fade-up" data-aos-delay="400">
+            <a data-toggle="collapse" href="#faq4" class="collapsed">What if the trainer is not available? <i class="icofont-simple-up"></i></a>
+            <div id="faq4" class="collapse" data-parent=".faq-list">
+              <p>
+                Relax you session will not be recorded for that day.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section><!-- End F.A.Q Section -->
+
+
+
+    <!-- ======= Team Section ======= -->
+    <section id="team" class="team" >
+      <div class="container" style="background-image: grey;" >
+
+        <div class="section-title" data-aos="zoom-out">
+          <h2 style="font-family: 'Times New Roman';">Team</h2>
+          <p  style="font-family: 'Times New Roman';">Our Hardworking Team</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up" data-aos-delay="100">
+              <div class="member-img">
+                <img src="static/drivingarena/images/profile-img.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
+                <h2 style="font-size: x-large; font-family: 'Times New Roman';">Ayush Srivastava</h2>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up" data-aos-delay="200">
+              <div class="member-img">
+                <img src="static/drivingarena/images/team/team-1.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
+                <h2 style="font-size: x-large; text-align:center; font-family: 'Times New Roman';">Sachin Yadav</h2>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up">
+              <div class="member-img">
+                <img src="static/drivingarena/images/profile-img.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
+                <h2 style="font-size: x-large; font-family: 'Times New Roman';">Ayush Gupta</h2>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up" data-aos-delay="200">
+              <div class="member-img">
+                <img src="static/drivingarena/images/admin2.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
+                <h2 style="font-size: x-large; text-align:center;font-family: 'Times New Roman';">Akhand Pratap Singh</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer">
+    <div class="container">
+      <h3 style="font-family: 'Times New Roman';">Swift Drving School</h3>
+      <div class="copyright">
+        &copy; Copyright <strong><span  style="font-family: 'Times New Roman';">Swift Driving Academy</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <p style="color: orangered;">Designed by Ayush Srivastava & Akhand Pratap Singh </p>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+
+  <a href="#" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
+
+
+  <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modaltitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="z-index:999999;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modaltitle">Contact Us Here-</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/contactus/" method="POST">
+                  {% csrf_token %}
+        <div class="form-group" >
+          <label for="name"  style="margin-right:75%;">Name-</label>
+          <input type="text" class="form-control" name="name" id="name" aria-describedby="username" placeholder="Your Name-  " style="margin-top:8px;">
+        </div>
+          <div class="form-group" style="margin-top:8px;">
+          <label for="email" style="margin-right:78%;">Email-</label>
+          <input type="email" class="form-control" name="email" id="contactemail" placeholder="Someone@gmail.com" required style="margin-top:8px;">
+        </div>
+          <div class="form-group" style="margin-top:8px;">
+          <label for="yourQuery" style="margin-right:78%;">Query-</label>
+          <input type="text" class="form-control" name="yourQuery" id="yourQuery" placeholder="Ask Your Questions Here-" required style="margin-top:8px;">
+        </div>
+          <button type="submit" class="btn btn-warning"><b>Submit</b></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style ="font-family: 'Times New Roman';">Transaction details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p style ="font-family: 'Times New Roman';">
+          <b>
+          For One month of Training you have to pay 3000/- and duration will be 1 hour.<br>
+          </b>
+          <b>
+          For Fifteen days of Training you have to pay 4500/- and duration will be 2 hour.<br>
+          </b>
+        </p>
+        <ul style ="font-family: 'Times New Roman';">
+          <li>
+            A/c name: Swift Driving Academy
+          </li>
+          <li>
+            A/c number: 1234432169
+          </li>
+          <li>
+            Bank name: Kotak Mahindra Bank
+          </li>
+          <li>
+            Branch: Aliganj, Lucknow
+          </li>
+          <li>
+            IFSC Code: KKBK0005190
+          </li>
+        </ul>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><b style="color: orangred;">Close</b></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="signupmodal" tabindex="-1" aria-labelledby="signupmodal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="z-index:999999;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="signupmodaltitle">Take Online Admisssion here-</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/onlinetraineeadmission/" method="POST">
+                  {% csrf_token %}
+          <div class="form-group" style="margin-top:8px;">
+          <label for="username" style="margin-right:78%;">UserName</label>
+          <input type="text" class="form-control" name="username" id="username" placeholder="Enter your name" required style="margin-top:8px;">
+        </div>
+          <div class="form-group" style="margin-top:8px;">
+          <label for="password" style="margin-right:78%;">Password</label>
+          <input type="password" class="form-control" name="password" id="password" placeholder="Enter your Password" required style="margin-top:8px;">
+        </div>
+          <div class="form-group" style="margin-top:8px;">
+          <label for="firstname" style="margin-right:78%;">First Name</label>
+          <input type="text" class="form-control" name="fname" id="fname" placeholder="Enter your first name" required style="margin-top:8px;">
+        </div>
+          <div class="form-group" style="margin-top:8px;">
+          <label for="lastname" style="margin-right:78%;">Last Name</label>
+          <input type="text" class="form-control" name="lname" id="lname" placeholder="Enter your last name" required style="margin-top:8px;">
+        </div>
+          <div class="form-group" style="margin-top:8px;">
+          <label for="email" style="margin-right:78%;">E-MAIL</label>
+          <input type="text" class="form-control" name="email" id="email" placeholder="Enter your e-mail" required style="margin-top:8px;">
+        </div>
+          <div class="form-group" style="margin-top:8px;">
+          <label for="phone" style="margin-right:60%;">Phone-Number</label>
+          <input type="tel" class="form-control" name="phone" id="phone" required style="margin-top:8px;">
+        </div>
+          <div class="form-group" style="margin-top:8px;">
+          <label for="city" style="margin-right:78%;">City</label>
+          <input type="text" class="form-control" name="city" id="city" required style="margin-top:8px;">
+        </div>
+          <div class="form-group" style="margin-top:8px;">
+          <label for="address" style="margin-right:78%;">Address</label>
+          <input type="textarea" class="form-control" name="address" id="address" required style="margin-top:8px;">
+        </div>
+          <div class="form-group" style="margin-top:45px; display:flex;">
+            <label>Gender</label>
+   <div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="Male">
+  <label class="form-check-label" for="inlineRadio1">Male</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Female">
+  <label class="form-check-label" for="inlineRadio2">Female</label>
+</div>
+  </div>
+          <div class="form-group" style="margin-top:45px; display:flex;">
+            <label>Admission Mode</label>
+   <div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="mode" id="mode" value="online">
+  <label class="form-check-label" for="mode">Online</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="mode" id="mode1" value="offline" disabled>
+  <label class="form-check-label" for="mode">Offline</label>
+</div>
+  </div>
+          <div class="form-group" style="margin-top:8px;">
+          <label for="fees" style="margin-right:78%;">Fees</label>
+          <input type="text" class="form-control" name="fees" id="fees" placeholder="Give your Fees" required style="margin-top:8px;">
+        </div>
+          <div class="form-group" style="margin-top:8px;">
+          <label for="transaction" style="margin-right:78%;">Transaction</label>
+          <input type="text" class="form-control" name="tdetails" id="tdetails" placeholder="Enter your Transaction Number" required style="margin-top:8px;">
+        </div>
+
+
+          <button type="submit" class="btn btn-warning" style="margin-left:120px;width:200px;"><b>SUBMIT</b></button>
+
+        </form>
+      </div>
+      {% if messages %}
+{% for message in messages%}
+
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    <strong> {{message}}</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+{% endif %}
+
+    </div>
+  </div>
+</div>
+
+   <div class="modal fade" id="loginmodal" tabindex="-1" aria-labelledby="loginmodaltitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="z-index:999999;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginmodaltitle">Login Here</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/login/" method="POST">
+                  {% csrf_token %}
+        <div class="form-group" >
+          <label for="username"  style="margin-right:75%;">User Name</label>
+          <input type="text" class="form-control" name="username" id="username" aria-describedby="username" placeholder="Your username  " style="margin-top:8px;">
+        </div>
+          <div class="form-group" style="margin-top:8px;">
+          <label for="pass1" style="margin-right:78%;">Password-</label>
+          <input type="password" class="form-control" name="pass1" id="pass1" placeholder="Password" required style="margin-top:8px;">
+        </div>
+          <button type="submit" class="btn btn-warning"><b>Login</b></button>
+        </form>
+      </div>
+      {% if messages %}
+{% for message in messages%}
+
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    <strong> {{message}}</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+{% endif %}
+
+    </div>
+  </div>
+</div>
+
+
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'drivingarena/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'drivingarena/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'drivingarena/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'drivingarena/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'drivingarena/vendor/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'drivingarena/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+<!-- <script src="{% static 'drivingarena/vendor/aos/aos.js' %}"></script> -->
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'drivingarena/js/main.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+<!-- aos.js -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init();
+  </script>
+</body>
+
+</html>
